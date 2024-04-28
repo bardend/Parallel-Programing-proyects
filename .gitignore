@@ -1,4 +1,8 @@
-MatrixMult/.idea
-MatrixMult/target
+MatrixMult/.idea/
+MatrixMult/target/
+MatrixMult/.gitignore
+.gitignore
+.idea
+
 
 
