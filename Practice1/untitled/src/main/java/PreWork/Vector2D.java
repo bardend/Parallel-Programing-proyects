@@ -10,6 +10,13 @@ public class Vector2D {
     public double[][] getData() {
         return data;
     }
+    public double getval(int row, int col) {
+        return data[row][col];
+    }
+    public void setval(int row, int col, double val) {
+        data[row][col] = val;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

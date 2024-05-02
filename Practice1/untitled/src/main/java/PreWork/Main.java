@@ -6,12 +6,12 @@ import java.util.concurrent.ForkJoinPool;
 public class Main {
     public static void main(String[] args) {
         // Crear instancias de Vector2D
-        Vector2D vector2D = new Vector2D(10, 10);
-        Vector2D newVector2D = new Vector2D(5, 5);
-        // Llenar newVector2D con los valores deseados
+        Vector2D vector2D = new Vector2D(6, 6);
+        Vector2D newVector2D = new Vector2D(4, 4);
 
         fillRandomValues(newVector2D);
         fillRandomValues(vector2D);
+
         System.out.println("Vector2D:");
         System.out.println(vector2D);
 
@@ -19,7 +19,7 @@ public class Main {
         System.out.println(newVector2D);
 
         // Crear una tarea para modificar el vector
-        ModifyVectorTask task = new ModifyVectorTask(2, 2, 5, 5, 2,2, vector2D, newVector2D);
+        ModifyVectorTask task = new ModifyVectorTask(1, 1, 4, 4, 1,1, vector2D, newVector2D);
 
         // Crear un ForkJoinPool
         ForkJoinPool pool = new ForkJoinPool();

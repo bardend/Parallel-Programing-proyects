@@ -2,7 +2,7 @@ package PreWork;
 import java.util.concurrent.RecursiveAction;
 
 public class ModifyVectorTask extends RecursiveAction {
-    private static final int THRESHOLD = 5; // Umbral para dividir la tarea
+    private static final int THRESHOLD = 80; // Umbral para dividir la tarea
     private int xStart;
     private int yStart;
     private int height;
@@ -23,29 +23,27 @@ public class ModifyVectorTask extends RecursiveAction {
 
     @Override
     protected void compute() {
-        if ((height <= THRESHOLD) && (width <= THRESHOLD)) {
+
+
+        if ((height <= THRESHOLD) ) {
             // Caso base: si la altura y el ancho son menores o iguales al umbral,
             // modifica el vector directamente en esta tarea.
             modifyVector();
         } else {
             // Dividir la tarea en sub-tareas más pequeñas
-            int halfHeight = height / 2;
 
             invokeAll(
-                    new ModifyVectorTask(xStart, yStart, halfHeight/2, width, xx, yy, vector2D, newVector2D),
-                    new ModifyVectorTask(halfHeight/2 + xStart, yStart, halfHeight - halfHeight/2, width, xx, yy, vector2D, newVector2D)
+                    new ModifyVectorTask(xStart, yStart,height/2, width, xx, yy, vector2D, newVector2D),
+                    new ModifyVectorTask(height/2 + xStart, yStart, height - height/2, width, xx, yy, vector2D, newVector2D)
             );
         }
     }
 
     private void modifyVector() {
-        // Modificar la parte del vector especificada
-        double[][] vectorData = vector2D.getData();
-        double[][] newVectorData = newVector2D.getData();
 
         for(int i = xStart; i < xStart+height; i++) {
             for(int j = yStart; j < yStart+width; j++) {
-                vectorData[i][j] = newVectorData[i-xx][j-yy];
+                vector2D.setval(i, j, newVector2D.getval(i-xx, j-yy));
             }
         }
     }
